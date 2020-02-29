@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-busqueda',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BusquedaComponent implements OnInit {
 
+  search: FormControl = new FormControl('');
+  @Output('search') searchEmitter = new EventEmitter<string>();
+
   constructor() { }
 
   ngOnInit() {
+    this.search.valueChanges.subscribe();
   }
 
 }
