@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-busqueda',
@@ -9,12 +10,14 @@ import { FormControl } from '@angular/forms';
 export class BusquedaComponent implements OnInit {
 
   search: FormControl = new FormControl('');
-  @Output('search') searchEmitter = new EventEmitter<string>();
+  @Output() searchEmitter = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit() {
-    this.search.valueChanges.subscribe();
+    this.search.valueChanges
+    .pipe(debounceTime(300)) // para que haga una demora de 300 ms
+    .subscribe(valor => this.searchEmitter.emit(valor));
   }
 
 }
