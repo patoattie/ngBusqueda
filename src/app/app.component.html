@@ -1,5 +1,9 @@
 <app-busqueda (searchEmitter)="hacerBusqueda($event)"></app-busqueda>
 
 <ul>
-    <li *ngFor='let usuario of usuarios | busqueda: filtro'>{{ usuario.name }}</li>
+    <!-- Sin BehaviorSubject -->
+    <!-- <li *ngFor='let usuario of usuarios | busqueda: filtro'>{{ usuario.name }}</li> -->
+    
+    <!-- Con BehaviorSubject -->
+    <li *ngFor='let usuario of (usuarios | async) | busqueda: (filtro | async)'>{{ usuario.name }}</li>
 </ul>

@@ -1,11 +1,12 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-busqueda',
   templateUrl: './busqueda.component.html',
-  styleUrls: ['./busqueda.component.scss']
+  styleUrls: ['./busqueda.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush // Con BehaviorSubject
 })
 export class BusquedaComponent implements OnInit {
 
